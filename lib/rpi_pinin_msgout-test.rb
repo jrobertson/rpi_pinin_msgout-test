@@ -7,14 +7,13 @@ require 'rpi_pinin_msgout'
 require 'chronic_duration'
 
 
-
 class RPiPinInMsgOutTest < RPiPinInMsgOut
 
   # duration: Used by sample mode
   
   def initialize(id, pull: nil, mode: :default, verbose: true, 
                  subtopic: 'sensor', device_id: 'pi', notifier: Echo.new, 
-                 duration: '5 seconds', index: 0, capture_rate: 0.5, 
+                 duration: '5 seconds', index: 0, capture_rate: 0.15, 
                  descriptor: 'detected')
             
     @mode, @verbose, @notifier, @duration = mode, verbose, notifier, duration
@@ -48,6 +47,8 @@ class RPiPinInMsgOutTest < RPiPinInMsgOut
       
     end # /watch_high
     
-  end    
+  end
+  
+  alias button_setup setup
     
 end
