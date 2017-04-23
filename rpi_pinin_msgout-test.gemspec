@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'rpi_pinin_msgout-test'
-  s.version = '0.1.1'
+  s.version = '0.1.2'
   s.summary = "Tests the rpi_pinin_msgout gem by simulating the triggering of a pin high 
   event using the keyboard's spacebar key."
   s.authors = ['James Robertson']

@@ -23,8 +23,28 @@ class RPiPinInMsgOutTest < RPiPinInMsgOut
   end  
   
   private
+
+  def button_setup(external: nil)
     
-  def setup()
+    t0 = Time.now + 1        
+    
+    #self.watch do 
+    while (c = $stdin.getch ) != ' ' do
+      
+      external.method(name).call if external
+      puts  Time.now.to_s if @verbose
+      
+      # pressing the key x simulates a key pressed down event
+      # pressing the key c simulates a key up event
+      
+      state = c == 'x' ? 1 : 0
+      yield(state) 
+      
+    end # /watch
+    
+  end  
+  
+  def setup(external: nil)
     
     t0 = Time.now + 1        
     
@@ -35,6 +55,7 @@ class RPiPinInMsgOutTest < RPiPinInMsgOut
       #               milliseconds ago since the last movement
       if t0 + @capture_rate < Time.now then     
         
+        external.method(name).call if external
         puts  Time.now.to_s if @verbose
         
         yield() 
@@ -49,6 +70,5 @@ class RPiPinInMsgOutTest < RPiPinInMsgOut
     
   end
   
-  alias button_setup setup
     
 end
